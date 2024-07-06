@@ -5,7 +5,6 @@ package io.zipcoder;
  * @author tariq
  */
 public class StringsAndThings {
-
     /**
      * Given a string, count the number of words ending in 'y' or 'z' -- so the 'y' in "heavy" and the 'z' in "fez" count,
      * but not the 'y' in "yellow" (not case sensitive). We'll say that a y or z is at the end of a word if there is not an alphabetic
@@ -26,11 +25,6 @@ public class StringsAndThings {
         System.out.println(x);
         return counter;//Returns the final count of words ending with 'y' or 'z' from the input string.
     }
-
-
-
-
-
     /**
      * Given two strings, base and remove, return a version of the base string where all instances of the remove string have
      * been removed (not case sensitive). You may assume that the remove string is length 1 or more.
@@ -41,7 +35,10 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        //given 2 strings, return the new string with all the removed based.
+        //(.replace) function - takes two value, what you're replacing and what you're replacing it with
+        String s = base.replace(remove, "");
+        return s; //The return is made easier if we just 'return base.replace(remove, "");' will be quicker than designating a new variable
     }
 
     /**
@@ -53,9 +50,10 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        int baseLength = base.length;
+        int newLength = removeString(base,target).length();
+        return (baseLength - newLength) / target.length();
     }
-
     /**
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
      * Return true if all the g's in the given string are happy.
