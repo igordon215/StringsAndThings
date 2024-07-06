@@ -15,8 +15,21 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        String x = input;//Copies the input string into a new variable x.
+        int counter = 0;//Initializes a counter variable to count words ending with 'y' or 'z'.
+        String[] strings = x.split(" ");//Splits the string x into an array of strings (strings), where each element in the array corresponds to a word separated by spaces in the original string.
+        for (int i = 0; i < strings.length; i++) {//Iterates through each element (word) in the strings array.
+            if (strings[i].endsWith("y") || (strings[i].endsWith("z"))) {//Checks if the current word (strings[i]) ends with either 'y' or 'z'.
+                counter++;//If true, increments the counter variable.
+            }
+        }
+        System.out.println(x);
+        return counter;//Returns the final count of words ending with 'y' or 'z' from the input string.
     }
+
+
+
+
 
     /**
      * Given two strings, base and remove, return a version of the base string where all instances of the remove string have
