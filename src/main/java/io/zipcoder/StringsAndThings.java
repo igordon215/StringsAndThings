@@ -14,6 +14,8 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
+        //https://www.geeksforgeeks.org/split-string-java-examples/
+        //https://www.w3schools.com/java/ref_string_split.asp
         String x = input;//Copies the input string into a new variable x.
         int counter = 0;//Initializes a counter variable to count words ending with 'y' or 'z'.
         String[] strings = x.split(" ");//Splits the string x into an array of strings (strings), where each element in the array corresponds to a word separated by spaces in the original string.
@@ -37,7 +39,9 @@ public class StringsAndThings {
     public String removeString(String base, String remove){
         //given 2 strings, return the new string with all the removed based.
         //(.replace) function - takes two value, what you're replacing and what you're replacing it with
+        //https://www.baeldung.com/java-remove-replace-string-part
         String s = base.replace(remove, "");
+        System.out.println(s);
         return s; //The return is made easier if we just 'return base.replace(remove, "");' will be quicker than designating a new variable
     }
 
@@ -50,9 +54,16 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        int baseLength = base.length;
-        int newLength = removeString(base,target).length();
-        return (baseLength - newLength) / target.length();
+        //check if the input contains equal number of "is" and "not"
+        //if #not = #is = true; if #not < #is return false
+        //https://www.baeldung.com/java-remove-replace-string-part
+        int orgLength = input.length(); //store original string input
+        int isLength = removeString(input, "is").length(); // invoke removeString to remove all "is"
+        int countIs = (orgLength - isLength) / 2; // Calculates how many "is" by subtracting the new length from the original length and dividing by 2 (since "is" has 2 characters).
+        int notLength1 = removeString(input, "not").length(); // Removes all occurrences of "not" from the input string and calculates the new length after removal.
+        int countNot =(orgLength - notLength1) / 3; // Calculates the number of occurrences of "not" by subtracting the new length from the original length and dividing by 3 (since "not" has 3 characters).
+        System.out.println(countIs == countNot);
+        return countIs == countNot; //Compares the counts of "is" and "not". If they are equal, returns true; otherwise, returns false.
     }
     /**
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
@@ -62,10 +73,19 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        //https://www.w3schools.com/java/ref_string_charat.asp
+        boolean gHappy = false;//initialize to keep track of happy g's
+        for(int i = 0; i < input.length(); i++) { //iterate through each character in the input string
+            if (i > 0) { //don't check 1st character
+                if (input.charAt(i) == 'g' && input.charAt(i + 1) == 'g') { //check if current char is "g" and the next char. is also "g"
+                    gHappy = true; // = gHappy true condition
+                    break; // loop break
+                }
+            }
+        }
+        System.out.println(gHappy);
+        return gHappy;
     }
-
-
     /**
      * We'll say that a "triple" in a string is a char appearing three times in a row.
      * Return the number of triples in the given string. The triples may overlap.
@@ -74,6 +94,13 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int counter = 0; //initialize counter
+        for(int i = 0; i < input.length(); i++) { // Iterates through each character in the input string.
+            while (i + 2 < input.length() && input.charAt(i) == input.charAt(i + 1) && input.charAt(i) == input.charAt(i+2)) { //Checks if the current char (input.charAt(i)) is equal to the next two char (input.charAt(i + 1) and input.charAt(i + 2)).
+                i++;//moves index foward by one to skip over identified triple                                          //i + 2 < input.length(): Ensures that there are at least three characters remaining in the string to check.
+                counter++;//increment counter on discovery of a triple                                                 //input.charAt(i) == input.charAt(i + 1) && input.charAt(i) == input.charAt(i + 2): Ensures that all three characters are identical.
+            }
+            System.out.print(counter);
+        }   return counter;
     }
 }
